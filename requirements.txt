@@ -1,0 +1,14 @@
+openai
+streamlit
+faiss-cpu
+python-dotenv
+tiktoken
+pandas
+yfinance
+plotly
+fastapi
+pydantic
+typing
+uvicorn
+newsapi-python
+sec-api
