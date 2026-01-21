@@ -18,11 +18,11 @@ A conversational investment‐analysis API built with FastAPI, FAISS, and OpenAI
   - Built on [FastAPI](https://fastapi.tiangolo.com/) and served with Uvicorn  
   - Single `/insights` endpoint for natural-language investment queries  
 
-## 🚀 Getting Started
+## 🚀 Reproducibility
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/investment-insights-chatbot.git
+git clone https://github.com/harshit711/investment-insights-chatbot.git
 cd investment-insights-chatbot
 ```
 
