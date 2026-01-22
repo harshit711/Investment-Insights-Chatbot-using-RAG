@@ -40,7 +40,7 @@ Latency is tracked per request and aggregated across runs.
 
 The chart below shows **retrieval latency vs end-to-end latency** across sampled queries:
 
-![Latency Comparison](comparison.png)
+![Latency Comparison](metrics/comparison.png)
 
 ---
 
