@@ -1,29 +1,55 @@
-# Investment Insights Chatbot (RAG)
+# Investment Insights Assistant (RAG)
 
-A conversational investment‐analysis API built with FastAPI, FAISS, and OpenAI GPT-3.5. It aggregates live stock prices, news headlines, and SEC filings, semantically indexes them with OpenAI embeddings and FAISS, and returns concise, on-demand investment insights.
+A FastAPI-based investment research API that uses **retrieval-augmented generation (RAG)** to answer natural-language investment questions.  
+The system ingests market data, news headlines, and SEC filings, retrieves relevant context using **FAISS vector search**, and generates grounded insights using an **OpenAI LLM**.
+
+---
 
 ## 🔍 Features
 
-- **Real-time Data Ingestion**  
-  - Historical closing prices via [yfinance](https://pypi.org/project/yfinance/)  
-  - Latest headlines via [NewsAPI-Python](https://pypi.org/project/newsapi-python/)  
-  - Recent 10-K/10-Q filings via [sec-api](https://pypi.org/project/sec-api/)  
+- **Data Ingestion**
+  - Historical stock prices via `yfinance`
+  - Latest news headlines via `NewsAPI`
+  - Recent SEC filings (10-K / 10-Q) via `sec-api`
 
-- **Semantic Retrieval & LLM**  
-  - Embeddings generated with OpenAI’s `text-embedding-3-small`  
-  - FAISS index for sub-100 ms vector search  
-  - GPT-3.5–powered answer synthesis  
+- **Semantic Retrieval**
+  - Embeddings generated using OpenAI `text-embedding-3-small`
+  - FAISS index for top-k semantic search
+  - Query-specific context assembly
 
-- **Scalable API**  
-  - Built on [FastAPI](https://fastapi.tiangolo.com/) and served with Uvicorn  
-  - Single `/insights` endpoint for natural-language investment queries  
+- **LLM-Based Insight Generation**
+  - GPT-3.5 for concise, grounded responses
+  - Low-temperature prompting for consistency
+
+- **FastAPI Service**
+  - Single `/insights` POST endpoint
+  - Served using Uvicorn
+
+---
+
+## 📊 Performance Metrics
+
+Measured over **20+ API queries**:
+
+- **p95 retrieval latency:** ~560 ms  
+- **p95 end-to-end latency:** ~2.2 seconds  
+
+Latency is tracked per request and aggregated across runs.
+
+### Latency Comparison
+
+The chart below shows **retrieval latency vs end-to-end latency** across sampled queries:
+
+![Latency Comparison](comparison.png)
+
+---
 
 ## 🚀 Reproducibility
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/harshit711/investment-insights-chatbot.git
-cd investment-insights-chatbot
+git clone https://github.com/harshit711/Investment-Insights-Chatbot-using-RAG.git
+cd Investment-Insights-Chatbot-using-RAG
 ```
 
 ### 2. Create & activate a virtual environment
@@ -49,7 +75,7 @@ SEC_API_KEY=your_sec_api_key
 
 ### 5. Run the API
 ```bash
-python app.py
+uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 The server will start on http://localhost:8000
 
@@ -74,4 +100,11 @@ Content-Type: application/json
   "insights": "Apple closed down 1.8% today after ..."
 }
 ```
+
+# Evaluation:
+- Retrieval and end-to-end latencies logged per request
+- Percentile metrics (p50, p95) computed over multiple runs
+- Latency visualization generated using Matplotlib
+- Results used directly in portfolio case study and resume
+
 *Built with ❤️ for streamlined, data-driven investment decision support*
