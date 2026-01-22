@@ -12,7 +12,7 @@ load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 client  = OpenAI(api_key=api_key)
 
-news_api_key = os.getenv("NEWSAPI_KEY")
+news_api_key = os.getenv("NEWS_API_KEY")
 newsapi = NewsApiClient(api_key=news_api_key)
 
 sec_api_key = os.getenv("SEC_API_KEY")
